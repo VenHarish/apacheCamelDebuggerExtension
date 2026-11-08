@@ -1,0 +1,66 @@
+{
+  "name": "apache-camel-debugger",
+  "displayName": "Apache Camel Route Explorer",
+  "description": "Explore Apache Camel YAML DSL routes and attach the Java debugger to a running Camel JVM.",
+  "version": "0.1.0",
+  "publisher": "VenHarish",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other",
+    "Debuggers"
+  ],
+  "activationEvents": [
+    "onView:camelDebugger.routes",
+    "onView:camelDebugger.dependencies",
+    "onCommand:camelDebugger.refreshRoutes",
+    "onCommand:camelDebugger.refreshDependencies",
+    "onCommand:camelDebugger.attachDebugger"
+  ],
+  "main": "./out/src/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node --test out/test/*.test.js",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "saxes": "^6.0.0",
+    "yaml": "^2.8.1"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "camelDebugger.refreshRoutes",
+        "title": "Apache Camel: Refresh Routes"
+      },
+      {
+        "command": "camelDebugger.attachDebugger",
+        "title": "Apache Camel: Attach to JVM"
+      },
+      {
+        "command": "camelDebugger.refreshDependencies",
+        "title": "Apache Camel: Refresh Dependencies"
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "camelDebugger.routes",
+          "name": "Apache Camel Routes"
+        },
+        {
+          "id": "camelDebugger.dependencies",
+          "name": "Apache Camel Dependencies"
+        }
+      ]
+    }
+  }
+}
